@@ -5,65 +5,235 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".SimpleCalc">
 
     <Button
-        android:id="@+id/button17"
+        android:id="@+id/id_plus"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Button"
-        app:cornerRadius="0dp"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/guideline12"
+        style="@style/ButtonStyleColor"/>
+
+    <Button
+        android:id="@+id/id_equals"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="="
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline12"
+        app:layout_constraintVertical_bias="0.0"
+        style="@style/ButtonStyleColor"/>
+
+    <Button
+        android:id="@+id/id_dot"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/id_equals"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="@+id/guideline12"
+        app:layout_constraintVertical_bias="0.0"
+        style="@style/ButtonStyleColor"/>
+
+    <Button
+        android:id="@+id/id_minus"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="-"
+        app:layout_constraintBottom_toTopOf="@+id/id_plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/guideline11"
+        style="@style/ButtonStyleColor"/>
+
+    <Button
+        android:id="@+id/id_digit_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="3"
+        app:layout_constraintBottom_toTopOf="@+id/id_equals"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline11"
+        style="@style/ButtonStyleColor"/>
+
+    <Button
+        android:id="@+id/id_digit_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="2"
+        app:layout_constraintBottom_toTopOf="@+id/id_dot"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/id_digit_5"
+        style="@style/ButtonStyleColor"/>
+
+    <Button
+        android:id="@+id/id_multiply"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="*"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/guideline10"
+        app:layout_constraintVertical_bias="0.0"
+        style="@style/ButtonStyleColor"/>
+
+    <Button
+        android:id="@+id/id_digit_5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toEndOf="@+id/id_digit_4"
+        app:layout_constraintTop_toBottomOf="@+id/id_digit_8"
+        style="@style/ButtonStyleColor"/>
+
+    <Button
+        android:id="@+id/id_digit_6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="6"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toEndOf="@+id/id_digit_5"
+        app:layout_constraintTop_toTopOf="@+id/guideline10"
+        style="@style/ButtonStyleColor" />
+
+    <Button
+        android:id="@+id/id_divide"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="/"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        style="@style/ButtonStyleColor"/>
+
+    <Button
+        android:id="@+id/id_digit_9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="9"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        style="@style/ButtonStyleColor"/>
+
+    <Button
+        android:id="@+id/id_change_sign"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="±"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/id_clear"
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        style="@style/ButtonStyleColor"
+        />
+
+    <Button
+        android:id="@+id/id_clear"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="C"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        app:layout_constraintVertical_bias="0.0"
+        style="@style/ButtonStyleColor"
+        />
+
+    <Button
+        android:id="@+id/id_digit_8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="8"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toEndOf="@+id/id_digit_7"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        style="@style/ButtonStyleColor"/>
+
+    <Button
+        android:id="@+id/id_digit_7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="7"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button16" />
+        app:layout_constraintTop_toBottomOf="@+id/id_bksp"
+        app:layout_constraintVertical_bias="0.0"
+        style="@style/ButtonStyleColor"/>
 
     <Button
-        android:id="@+id/button18"
+        android:id="@+id/id_digit_4"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Button"
-        app:cornerRadius="0dp"
+        android:text="4"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline10"
-        app:layout_constraintVertical_bias="0.484" />
+        app:layout_constraintVertical_bias="0.0"
+        style="@style/ButtonStyleColor"/>
 
     <Button
-        android:id="@+id/button19"
+        android:id="@+id/id_digit_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Button"
-        app:cornerRadius="0dp"
+        android:text="1"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline11"
-        app:layout_constraintVertical_bias="0.526" />
+        style="@style/ButtonStyleColor"/>
 
     <Button
-        android:id="@+id/button20"
+        android:id="@+id/id_digit_0"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Button"
-        app:cornerRadius="0dp"
+        android:text="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline12" />
+        app:layout_constraintTop_toTopOf="@+id/guideline12"
+        style="@style/ButtonStyleColor"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/display"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="TextView"
+        android:text="0"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textSize="60sp"
+        android:gravity="end"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -127,14 +297,17 @@
         app:layout_constraintGuide_percent="0.84" />
 
     <Button
-        android:id="@+id/button16"
+        android:id="@+id/id_bksp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Button"
-        app:cornerRadius="0dp"
+        android:text="Bksp"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        app:layout_constraintVertical_bias="0.0"
+        style="@style/ButtonStyleColor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
