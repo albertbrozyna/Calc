@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class SimpleCalc : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,11 +22,11 @@ class SimpleCalc : AppCompatActivity() {
             insets
         }
 
-        var first_number = ""
-        var second_number = ""
-        var operator = ""
-        var result = 0
+        val display: TextView by lazy {
+            findViewById(R.id.display)
+        }
 
+        var operator = ""
 
         //Fetching buttons
         val buttonNumbers: Array<Button> by lazy {
@@ -67,10 +68,6 @@ class SimpleCalc : AppCompatActivity() {
 
         val changeSign: Button by lazy {
             findViewById(R.id.id_change_sign)
-        }
-
-        val display: TextView by lazy {
-            findViewById(R.id.display)
         }
 
 
