@@ -98,7 +98,12 @@ class SimpleCalc : AppCompatActivity() {
         //Listener for backspace
         bksp.setOnClickListener {
             val number = display.text.toString()
-            val newNumber = number.substring(0,number.length - 1)
+            var newNumber = number.substring(0,number.length - 1)
+
+            if(number.length == 1){
+                newNumber = "0"
+            }
+
             display.text = newNumber
         }
 
@@ -110,14 +115,17 @@ class SimpleCalc : AppCompatActivity() {
         //Listener for change sign
         changeSign.setOnClickListener {
             val number = display.text.toString()
-            val newNumber = if(number.first() == '-') number.substring(1,number.length) else "-" + number
+            var newNumber = "0"
+
+            if(number != "0"){
+                newNumber = if(number.first() == '-') number.substring(1,number.length) else "-" + number
+
+            }
 
             display.text = newNumber
         }
 
         //Listener for equals
-
-
 
         var first_number = ""
         var operator = ""
@@ -125,11 +133,11 @@ class SimpleCalc : AppCompatActivity() {
         //Listeners for operating buttons
         operatingButtons.forEach{
             button ->
-                first_number = display.text.toString()
-                operator = button.text.toString()
-                display.text = "0"
+                button.setOnClickListener{
+                    first_number = display.text.toString()
+                    operator = button.text.toString()
+                    display.text = "0"
+                }
         }
-
-
     }
 }
