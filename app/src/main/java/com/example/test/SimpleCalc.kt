@@ -3,6 +3,7 @@ package com.example.test
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.widget.Button
+import android.widget.HorizontalScrollView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -143,6 +144,7 @@ class SimpleCalc : AppCompatActivity() {
                 operatorIndex = findOperatorIndex(number)
             }
 
+            //If first char is minuis then we need to add one to index
             //Checking at what number we should change -
 
             if(operatorIndex == -1){
@@ -214,7 +216,12 @@ class SimpleCalc : AppCompatActivity() {
     fun findOperatorIndex(s : String) : Int{
         //Founding operator index
         var operatorIndex = 0
+        var add = 0
         //If minus is first
+        if(s.first() == '-'){
+            add = 1
+        }
+
         val s_new =  if(s.first() == '-') s.substring(1,s.length) else s
 
         var found = false
@@ -229,7 +236,7 @@ class SimpleCalc : AppCompatActivity() {
         if(!found){
             return -1;  //Index not found
         }
-        return operatorIndex
+        return operatorIndex + add
     }
 
 
@@ -274,6 +281,7 @@ class SimpleCalc : AppCompatActivity() {
         val operatorIndex = findOperatorIndex(e)
 
         //Splitting numbers by this index
+
         val firstNumber = e.substring(0,operatorIndex)
         val operator = e[operatorIndex]
         val secondNumber = e.substring(operatorIndex + 1)
@@ -302,6 +310,10 @@ class SimpleCalc : AppCompatActivity() {
         //Delete the dot
         if(sum_str.last() == '.'){
             sum_str = sum_str.substring(0,sum_str.length - 1)
+        }
+
+        if(sum_str == "-0"){
+            sum_str = "0"
         }
 
         return sum_str
