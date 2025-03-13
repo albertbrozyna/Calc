@@ -19,8 +19,11 @@ class SimpleCalc : AppCompatActivity() {
             insets
         }
 
+        var first_number = ""
+        var second_number = ""
+        var operator = ""
+        var result = 0
 
-        val sum = 0
 
         //Fetching buttons
         val buttonNumbers: Array<Button> by lazy {
@@ -80,9 +83,7 @@ class SimpleCalc : AppCompatActivity() {
         buttonNumbers.forEach { button ->
             button.setOnClickListener {
                 val number = display.text.toString()
-                val newNumber = if (number == "0")
-                    button.text
-                else number + button.text
+                val newNumber = if (number == "0") button.text else number + button.text
                 display.text = newNumber
             }
         }
@@ -91,7 +92,7 @@ class SimpleCalc : AppCompatActivity() {
 
         dot.setOnClickListener {
             val number = display.text.toString()
-            val newNumber = number + "."
+            var newNumber = if (number.last() != '.') number + "." else number
             display.text = newNumber
         }
 
@@ -119,7 +120,6 @@ class SimpleCalc : AppCompatActivity() {
 
             if(number != "0"){
                 newNumber = if(number.first() == '-') number.substring(1,number.length) else "-" + number
-
             }
 
             display.text = newNumber
@@ -127,17 +127,74 @@ class SimpleCalc : AppCompatActivity() {
 
         //Listener for equals
 
-        var first_number = ""
-        var operator = ""
 
         //Listeners for operating buttons
         operatingButtons.forEach{
             button ->
                 button.setOnClickListener{
-                    first_number = display.text.toString()
+                    var number = display.text.toString()
+                    var newNumber = number;
+
+                    if(containOperator(number)){
+                        newNumber = calculateExpression(number)
+                    }
+
                     operator = button.text.toString()
-                    display.text = "0"
+                    //If the operator is last char then replace operator
+                    if(isOperator(number.last())){
+                        newNumber = newNumber.dropLast(1) + operator
+                    }else{
+                        newNumber = number + operator
+                    }
+
+                    display.text = newNumber
                 }
         }
+
+
     }
+
+    fun isOperator(c : Char ) : Boolean{
+        return c == '+' || c == '-' || c == '/' || c == '*'
+    }
+
+    fun containOperator(s : String) : Boolean{
+        for(element in s){
+            if(isOperator(element)){
+                return true
+            }
+        }
+        return false
+    }
+
+    fun calculateExpression(e : String) : String{
+
+        val operators = listOf("+","-","*","/")
+        var operatorIndex = -1;
+        //Finding operator index
+        for(s in operators){
+            operatorIndex = e.indexOf(s)
+            if (operatorIndex != -1){
+                break
+            }
+        }
+
+        //Splitting numbers by this index
+        val first_number = e.substring(0,operatorIndex)
+        val operator = e[operatorIndex]
+        val second_number = e.substring(operatorIndex + 1)
+
+        val sum = first_number.toInt()
+
+        //Calculating
+        when (operator){
+            '+' -> sum + second_number.toInt()
+            '-' -> sum - second_number.toInt()
+            '*' -> sum * second_number.toInt()
+            '/' -> sum / second_number.toInt()
+        }
+
+        return sum.toString()
+    }
+
 }
