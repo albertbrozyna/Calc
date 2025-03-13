@@ -55,15 +55,15 @@ class SimpleCalc : AppCompatActivity() {
             findViewById(R.id.id_dot)
         }
 
-        val bksp :Button by lazy{
+        val bksp: Button by lazy {
             findViewById(R.id.id_bksp)
         }
 
-        val clear : Button by lazy{
+        val clear: Button by lazy {
             findViewById(R.id.id_clear)
         }
 
-        val changeSign : Button by lazy{
+        val changeSign: Button by lazy {
             findViewById(R.id.id_change_sign)
         }
 
@@ -92,16 +92,16 @@ class SimpleCalc : AppCompatActivity() {
 
         dot.setOnClickListener {
             val number = display.text.toString()
-            var newNumber = if (number.last() != '.') number + "." else number
+            val newNumber = if (number.last() != '.') number + "." else number
             display.text = newNumber
         }
 
         //Listener for backspace
         bksp.setOnClickListener {
             val number = display.text.toString()
-            var newNumber = number.substring(0,number.length - 1)
+            var newNumber = number.substring(0, number.length - 1)
 
-            if(number.length == 1){
+            if (number.length == 1) {
                 newNumber = "0"
             }
 
@@ -118,14 +118,25 @@ class SimpleCalc : AppCompatActivity() {
             val number = display.text.toString()
             var newNumber = "0"
 
-            if(number != "0"){
-                newNumber = if(number.first() == '-') number.substring(1,number.length) else "-" + number
+            if (number != "0") {
+                newNumber =
+                    if (number.first() == '-') number.substring(1, number.length) else "-" + number
             }
 
             display.text = newNumber
         }
 
         //Listener for equals
+        equals.setOnClickListener {
+        var number = display.text.toString()
+        var newNumber = number
+
+        if (containOperatorAndTwoDigits(number)) {
+            newNumber = calculateExpression(number)
+        }
+
+        display.text = newNumber
+    }
 
 
         //Listeners for operating buttons
@@ -133,18 +144,18 @@ class SimpleCalc : AppCompatActivity() {
             button ->
                 button.setOnClickListener{
                     var number = display.text.toString()
-                    var newNumber = number;
+                    var newNumber = number
 
-                    if(containOperator(number)){
+                    if(containOperatorAndTwoDigits(number)){
                         newNumber = calculateExpression(number)
                     }
 
                     operator = button.text.toString()
                     //If the operator is last char then replace operator
-                    if(isOperator(number.last())){
+                    if(isOperator(newNumber.last())){
                         newNumber = newNumber.dropLast(1) + operator
                     }else{
-                        newNumber = number + operator
+                        newNumber += operator
                     }
 
                     display.text = newNumber
@@ -158,19 +169,38 @@ class SimpleCalc : AppCompatActivity() {
         return c == '+' || c == '-' || c == '/' || c == '*'
     }
 
-    fun containOperator(s : String) : Boolean{
-        for(element in s){
-            if(isOperator(element)){
-                return true
+    fun containOperatorAndTwoDigits(s : String) : Boolean{
+        //Finding operator index
+        val operators = listOf("+","-","*","/")
+        var operatorIndex = -1
+        //If minus is first
+        val  s_new =  if(s.first() == '-') s.substring(1,s.length) else s
+
+
+        for(c in operators){
+            operatorIndex = s_new.indexOf(c)
+            if (operatorIndex != -1){
+                break
             }
         }
+
+        //No operator, return false
+        if(operatorIndex == -1){
+            return false
+        }
+
+        //Checking if operator is not last element
+        if(!isOperator(s.last() ) && s.last() != '.'){
+            return true
+        }
+
         return false
     }
 
     fun calculateExpression(e : String) : String{
 
         val operators = listOf("+","-","*","/")
-        var operatorIndex = -1;
+        var operatorIndex = -1
         //Finding operator index
         for(s in operators){
             operatorIndex = e.indexOf(s)
@@ -184,17 +214,30 @@ class SimpleCalc : AppCompatActivity() {
         val operator = e[operatorIndex]
         val second_number = e.substring(operatorIndex + 1)
 
-        val sum = first_number.toInt()
+        var sum = first_number.toDouble()
 
         //Calculating
         when (operator){
-            '+' -> sum + second_number.toInt()
-            '-' -> sum - second_number.toInt()
-            '*' -> sum * second_number.toInt()
-            '/' -> sum / second_number.toInt()
+            '+' -> sum += second_number.toDouble()
+            '-' -> sum -= second_number.toDouble()
+            '*' -> sum *= second_number.toDouble()
+            '/' -> sum /= second_number.toDouble()
         }
 
-        return sum.toString()
+        //Deleting zeros from the end and dot if they are
+        var sum_str = sum.toString()
+        if(sum_str.length > 1 && sum_str.first() != '0'){
+            while (sum_str.last() == '0'){
+                sum_str = sum_str.substring(0,sum_str.length - 1)
+            }
+        }
+
+        //Delete the dot
+        if(sum_str.last() == '.'){
+            sum_str = sum_str.substring(0,sum_str.length - 1)
+        }
+
+        return sum_str
     }
 
 }
