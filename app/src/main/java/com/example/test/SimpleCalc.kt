@@ -23,7 +23,7 @@ class SimpleCalc : AppCompatActivity() {
         val sum = 0
 
         //Fetching buttons
-        val buttonNumbers : Array<Button> by lazy {
+        val buttonNumbers: Array<Button> by lazy {
             arrayOf(
                 findViewById(R.id.id_digit_0),
                 findViewById(R.id.id_digit_1),
@@ -38,38 +38,97 @@ class SimpleCalc : AppCompatActivity() {
             )
         }
 
-        val operatingButtons : Array<Button> by lazy {
+        val operatingButtons: Array<Button> by lazy {
             arrayOf(
                 findViewById(R.id.id_minus),
                 findViewById(R.id.id_plus),
-                findViewById(R.id.id_equals),
                 findViewById(R.id.id_multiply),
-                findViewById(R.id.id_divide),
-                findViewById(R.id.id_bksp),
-                findViewById(R.id.id_change_sign),
-                findViewById(R.id.id_clear),
-                findViewById(R.id.id_dot)
+                findViewById(R.id.id_divide)
             )
         }
+        //Functional buttons variables
 
+        val dot: Button by lazy {
+            findViewById(R.id.id_dot)
+        }
 
-        val display : TextView by lazy {
+        val bksp :Button by lazy{
+            findViewById(R.id.id_bksp)
+        }
+
+        val clear : Button by lazy{
+            findViewById(R.id.id_clear)
+        }
+
+        val changeSign : Button by lazy{
+            findViewById(R.id.id_change_sign)
+        }
+
+        val display: TextView by lazy {
             findViewById(R.id.display)
         }
 
+        val equals: TextView by lazy {
+            findViewById(R.id.id_equals)
+        }
+
+        //Initializing display value
+        display.text = "0"
+
         //Adding listeners to numbers
 
-        buttonNumbers.forEach { button -> {
+        buttonNumbers.forEach { button ->
             button.setOnClickListener {
                 val number = display.text.toString()
-                val newNumber  = if (number == "0")
+                val newNumber = if (number == "0")
                     button.text
                 else number + button.text
                 display.text = newNumber
             }
-        } }
+        }
+
+        //Listener for dot
+
+        dot.setOnClickListener {
+            val number = display.text.toString()
+            val newNumber = number + "."
+            display.text = newNumber
+        }
+
+        //Listener for backspace
+        bksp.setOnClickListener {
+            val number = display.text.toString()
+            val newNumber = number.substring(0,number.length - 1)
+            display.text = newNumber
+        }
+
+        //Listener for clear
+        clear.setOnClickListener {
+            display.text = "0"
+        }
+
+        //Listener for change sign
+        changeSign.setOnClickListener {
+            val number = display.text.toString()
+            val newNumber = if(number.first() == '-') number.substring(1,number.length) else "-" + number
+
+            display.text = newNumber
+        }
+
+        //Listener for equals
 
 
+
+        var first_number = ""
+        var operator = ""
+
+        //Listeners for operating buttons
+        operatingButtons.forEach{
+            button ->
+                first_number = display.text.toString()
+                operator = button.text.toString()
+                display.text = "0"
+        }
 
 
     }
