@@ -282,6 +282,7 @@ class SimpleCalc : AppCompatActivity() {
         return false
     }
 
+
     fun calculateExpression(e: String): String {
         val operatorIndex = findOperatorIndex(e)
 
