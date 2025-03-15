@@ -46,11 +46,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hss1">
+        app:layout_constraintTop_toBottomOf="@id/hss1"
+        >
 
         <Button
             android:id="@+id/id_bksp"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
@@ -58,7 +58,9 @@
             android:layout_columnSpan="1"
             android:text="Bksp"
             android:layout_gravity="fill"
-            style="@style/ButtonStyleColor"/>
+            style="@style/ButtonStyleColor"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"/>
 
         <Button
             android:id="@+id/id_clear"
@@ -69,7 +71,9 @@
             android:layout_column="1"
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
-            style="@style/ButtonStyleColor" />
+            style="@style/ButtonStyleColor"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="2"/>
 
         <Button
             android:id="@+id/id_change_sign"
@@ -81,6 +85,8 @@
             android:layout_columnSpan="1"
             android:layout_gravity="fill"
             style="@style/ButtonStyleColor"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             />
 
         <Button
@@ -92,6 +98,8 @@
             android:layout_column="0"
             android:layout_columnSpan="1"
             android:text="sin"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
         <Button
@@ -114,6 +122,8 @@
             android:layout_column="2"
             android:layout_columnSpan="1"
             android:text="tan"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
         <Button
@@ -125,6 +135,8 @@
             android:layout_column="3"
             android:layout_columnSpan="1"
             android:text="ln"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
         <Button
@@ -136,6 +148,8 @@
             android:layout_column="0"
             android:layout_columnSpan="1"
             android:text="sqrt"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
 
@@ -148,6 +162,8 @@
             android:layout_column="1"
             android:layout_columnSpan="1"
             android:text="x^2"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
         <Button
@@ -159,6 +175,8 @@
             android:layout_column="2"
             android:layout_columnSpan="1"
             android:text="x^y"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
         <Button
@@ -169,9 +187,8 @@
             android:layout_row="2"
             android:layout_column="3"
             android:layout_columnSpan="1"
-            android:text="x^y"
+            android:text="log"
             android:layout_gravity="fill"/>
-
 
         <Button
             android:id="@+id/id_digit_7"
@@ -182,6 +199,8 @@
             android:layout_column="0"
             android:layout_columnSpan="1"
             android:text="7"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
 
@@ -194,6 +213,8 @@
             android:layout_column="1"
             android:layout_columnSpan="1"
             android:text="8"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
 
@@ -206,6 +227,8 @@
             android:layout_column="2"
             android:layout_columnSpan="1"
             android:text="9"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
 
@@ -218,6 +241,8 @@
             android:layout_column="3"
             android:layout_columnSpan="1"
             android:text="/"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
 
@@ -230,6 +255,8 @@
             android:layout_column="0"
             android:layout_columnSpan="1"
             android:text="4"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
         <Button
@@ -241,6 +268,8 @@
             android:layout_column="1"
             android:layout_columnSpan="1"
             android:text="5"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
         <Button
@@ -252,6 +281,8 @@
             android:layout_column="2"
             android:layout_columnSpan="1"
             android:text="6"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
 
@@ -264,6 +295,8 @@
             android:layout_column="3"
             android:layout_columnSpan="1"
             android:text="*"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
         <Button
@@ -275,6 +308,8 @@
             android:layout_column="0"
             android:layout_columnSpan="1"
             android:text="1"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
         <Button
@@ -286,6 +321,8 @@
             android:layout_column="1"
             android:layout_columnSpan="1"
             android:text="2"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
 
@@ -298,6 +335,8 @@
             android:layout_column="2"
             android:layout_columnSpan="1"
             android:text="3"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
 
@@ -310,6 +349,8 @@
             android:layout_column="3"
             android:layout_columnSpan="1"
             android:text="-"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
 
@@ -322,6 +363,8 @@
             android:layout_column="0"
             android:layout_columnSpan="1"
             android:text="0"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
         <Button
@@ -333,6 +376,8 @@
             android:layout_column="1"
             android:layout_columnSpan="1"
             android:text="."
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
         <Button
@@ -344,8 +389,9 @@
             android:layout_column="2"
             android:layout_columnSpan="1"
             android:text="="
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
-
 
         <Button
             android:id="@+id/id_plus"
@@ -356,9 +402,10 @@
             android:layout_column="3"
             android:layout_columnSpan="1"
             android:text="+"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
     </GridLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
