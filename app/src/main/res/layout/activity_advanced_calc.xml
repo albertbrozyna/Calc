@@ -2,21 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".advanced_calc">
+    tools:context=".AdvancedCalc">
 
     <HorizontalScrollView
         android:id="@+id/hss1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="10dp"
+        android:foregroundGravity="right"
+        android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_Endof="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/gr1"
         app:layout_constraintHeight_percent="0.15">
@@ -24,23 +24,19 @@
         <TextView
             android:id="@+id/display"
             android:text="0"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:ellipsize="start"
             android:marqueeRepeatLimit="marquee_forever"
-            android:padding="10dp"
+            android:padding="0dp"
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:textColor="@color/white"
-            android:textSize="60sp"
-
-            app:layout_constraintBottom_toTopOf="@id/gr1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:fillViewport="true"
+            android:gravity="center|end"
+            android:textSize="50sp"/>
     </HorizontalScrollView>
-
     <GridLayout
         android:id="@+id/gr1"
         android:layout_width="0dp"
@@ -331,7 +327,6 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
 
-
         <Button
             android:id="@+id/id_digit_3"
             style="@style/ButtonStyleColor"
@@ -344,8 +339,6 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"/>
-
-
         <Button
             android:id="@+id/id_minus"
             style="@style/ButtonStyleColor"

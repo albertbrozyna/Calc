@@ -28,11 +28,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent);
         }
         button1.setOnClickListener{
-            val intent = Intent(this,advanced_calc::class.java)
+            val intent = Intent(this,AdvancedCalc::class.java)
             startActivity(intent);
         }
-
-
 
     }
 }
