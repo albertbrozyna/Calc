@@ -8,17 +8,24 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
+import kotlin.math.tan
+import kotlin.math.ln
+import kotlin.math.log
+import kotlin.math.pow
 
-class SimpleCalc : AppCompatActivity() {
+class AdvancedCalc : AppCompatActivity() {
 
-    private val hsv :HorizontalScrollView by lazy { findViewById(R.id.hss1) }
+    private val hsv: HorizontalScrollView by lazy { findViewById(R.id.hss1) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_simple_calc)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        setContentView(R.layout.activity_advanced_calc)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main1)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -74,6 +81,37 @@ class SimpleCalc : AppCompatActivity() {
 
         val equals: TextView by lazy {
             findViewById(R.id.id_equals)
+        }
+
+        val sin: Button by lazy {
+            findViewById(R.id.sin)
+        }
+        val cos: Button by lazy {
+            findViewById(R.id.cos)
+        }
+
+        val tan: Button by lazy {
+            findViewById(R.id.tan)
+        }
+
+        val log: Button by lazy {
+            findViewById(R.id.log)
+        }
+
+        val ln: Button by lazy {
+            findViewById(R.id.ln)
+        }
+
+        val sqrt: Button by lazy {
+            findViewById(R.id.sqrt)
+        }
+
+        val xsquare: Button by lazy {
+            findViewById(R.id.xsquare)
+        }
+
+        val xpowy: Button by lazy {
+            findViewById(R.id.xpowy)
         }
 
         //Initializing display value
@@ -214,8 +252,148 @@ class SimpleCalc : AppCompatActivity() {
                 updateScreen()
             }
         }
+        //Listeners for sin cos
 
 
+        sin.setOnClickListener {
+            val number = display.text.toString()
+
+            if (containOperatorAndTwoDigits(number)) {
+                var newNumber = calculateExpression(number)
+                newNumber = sin(newNumber.toDouble()).toString()
+                newNumber = deleteZeros(newNumber)
+                display.text = newNumber
+            } else if (isNumber(number)) {
+                var newNumber = sin(number.toDouble()).toString()
+                newNumber = deleteZeros(newNumber)
+                display.text = newNumber
+            }
+            updateScreen()
+        }
+
+        cos.setOnClickListener {
+            val number = display.text.toString()
+
+            if (containOperatorAndTwoDigits(number)) {
+                var newNumber = calculateExpression(number)
+                newNumber = cos(newNumber.toDouble()).toString()
+                newNumber = deleteZeros(newNumber)
+                display.text = newNumber
+            } else if (isNumber(number)) {
+                var newNumber = cos(number.toDouble()).toString()
+                newNumber = deleteZeros(newNumber)
+                display.text = newNumber
+            }
+            updateScreen()
+        }
+
+        tan.setOnClickListener {
+            val number = display.text.toString()
+
+            if (containOperatorAndTwoDigits(number)) {
+                var newNumber = calculateExpression(number)
+                newNumber = tan(newNumber.toDouble()).toString()
+                newNumber = deleteZeros(newNumber)
+                display.text = newNumber
+            } else if (isNumber(number)) {
+                var newNumber = tan(number.toDouble()).toString()
+                newNumber = deleteZeros(newNumber)
+                display.text = newNumber
+            }
+            updateScreen()
+        }
+
+        sqrt.setOnClickListener {
+            val number = display.text.toString()
+
+            if (containOperatorAndTwoDigits(number)) {
+                val num = calculateExpression(number)
+
+                if (num.toDouble() >= 0) {
+                    var newNumber = sqrt(num.toDouble()).toString()
+                    newNumber = deleteZeros(newNumber)
+                    display.text = newNumber
+                }
+            } else if (isNumber(number) && number.first() != '-') {
+                var newNumber = sqrt(number.toDouble()).toString()
+                newNumber = deleteZeros(newNumber)
+                display.text = newNumber
+            }
+            updateScreen()
+        }
+
+        ln.setOnClickListener {
+            val number = display.text.toString()
+
+            if (containOperatorAndTwoDigits(number)) {
+                val num = calculateExpression(number)
+
+                if (num.toDouble() > 0) {
+                    var newNumber = ln(num.toDouble()).toString()
+                    newNumber = deleteZeros(newNumber)
+                    display.text = newNumber
+                }
+            } else if (isNumber(number) && number.first() != '-') {
+                var newNumber = sqrt(number.toDouble()).toString()
+                newNumber = deleteZeros(newNumber)
+                display.text = newNumber
+            }
+        }
+
+        log.setOnClickListener {
+            val number = display.text.toString()
+
+            if (containOperatorAndTwoDigits(number)) {
+                val num = calculateExpression(number)
+
+                if (num.toDouble() > 0) {
+                    var newNumber = log(num.toDouble(), 10.0).toString()
+                    newNumber = deleteZeros(newNumber)
+                    display.text = newNumber
+                }
+            } else if (isNumber(number) && number.first() != '-') {
+                var newNumber = sqrt(number.toDouble()).toString()
+                newNumber = deleteZeros(newNumber)
+                display.text = newNumber
+            }
+        }
+
+        xsquare.setOnClickListener {
+            val number = display.text.toString()
+
+            if (containOperatorAndTwoDigits(number)) {
+                val num = calculateExpression(number)
+
+                var newNumber = (num.toDouble() * num.toDouble()).toString()
+                newNumber = deleteZeros(newNumber)
+                display.text = newNumber
+            } else if (isNumber(number)) {
+                var newNumber = (number.toDouble() * number.toDouble()).toString()
+                newNumber = deleteZeros(newNumber)
+                display.text = newNumber
+            }
+            updateScreen()
+        }
+
+        xpowy.setOnClickListener {
+            val number = display.text.toString()
+            if (isOperator(number.last())) {
+                display.text = display.text.toString().dropLast(1)
+                display.text = display.text.toString() + '^'
+            } else if (number.last() != '.') {
+                display.text = display.text.toString() + '^'
+            }
+            updateScreen()
+        }
+    }
+
+    fun isNumber(s: String): Boolean {
+        val num = s.toDoubleOrNull()
+
+        if (num == null || s.last() == '.' || isOperator(s.last())) {
+            return false
+        }
+        return true
     }
 
     fun findOperatorIndex(s: String): Int {
@@ -262,7 +440,7 @@ class SimpleCalc : AppCompatActivity() {
 
 
     fun isOperator(c: Char): Boolean {
-        return c == '+' || c == '-' || c == '/' || c == '*'
+        return c == '+' || c == '-' || c == '/' || c == '*' || c == '^'
     }
 
     fun containOperatorAndTwoDigits(s: String): Boolean {
@@ -273,13 +451,16 @@ class SimpleCalc : AppCompatActivity() {
         if (operatorIndex == -1) {
             return false
         }
+        //Converting to numbers
+
+        s.substring(0, operatorIndex).toDoubleOrNull() ?: return false
+        s.substring(operatorIndex + 1).toDoubleOrNull() ?: return false
 
         //Checking if operator is not last element
-        if (!isOperator(s.last()) && s.last() != '.') {
-            return true
+        if (isOperator(s.last()) || s.last() == '.') {
+            return false
         }
-
-        return false
+        return true
     }
 
 
@@ -303,27 +484,34 @@ class SimpleCalc : AppCompatActivity() {
             '-' -> firstNumberDb -= secondNumberDb
             '*' -> firstNumberDb *= secondNumberDb
             '/' -> firstNumberDb /= secondNumberDb
+            '^' -> firstNumberDb = firstNumberDb.pow(secondNumberDb)
         }
 
         //Deleting zeros from the end and dot if they are
-        var sumStr = firstNumberDb.toString()
-        if (sumStr.length > 1 || sumStr.first() != '0') {
-            while (sumStr.last() == '0') {
-                sumStr = sumStr.substring(0, sumStr.length - 1)
+        val sumStr = deleteZeros(firstNumberDb.toString())
+
+        return sumStr
+    }
+
+    fun deleteZeros(s: String): String {
+        var str = s
+        if (str.length > 1 || str.first() != '0') {
+            while (str.last() == '0') {
+                str = str.substring(0, str.length - 1)
             }
         }
 
         //Delete the dot
-        if (sumStr.last() == '.') {
-            sumStr = sumStr.substring(0, sumStr.length - 1)
+        if (str.last() == '.') {
+            str = str.substring(0, str.length - 1)
         }
 
-        if (sumStr == "-0") {
-            sumStr = "0"
+        if (str == "-0") {
+            str = "0"
         }
-
-        return sumStr
+        return str
     }
+
 
     fun updateScreen() {
         hsv.post {

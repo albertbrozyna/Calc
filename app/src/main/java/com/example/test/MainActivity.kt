@@ -19,20 +19,25 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val button = findViewById<Button>(R.id.menu1);
-        val button1 = findViewById<Button>(R.id.menu2);
-        val button2 = findViewById<Button>(R.id.menu3);
-
+        val button = findViewById<Button>(R.id.menu1)
+        val button1 = findViewById<Button>(R.id.menu2)
+        val button2 = findViewById<Button>(R.id.menu3)
+        val button3 = findViewById<Button>(R.id.menu4)
         button.setOnClickListener{
             val intent = Intent(this,SimpleCalc::class.java)
-            startActivity(intent);
+            startActivity(intent)
         }
         button1.setOnClickListener{
-            val intent = Intent(this,advanced_calc::class.java)
-            startActivity(intent);
+            val intent = Intent(this,AdvancedCalc::class.java)
+            startActivity(intent)
         }
-
-
+        button2.setOnClickListener{
+           val intent = Intent(this,About::class.java)
+           startActivity(intent)
+        }
+        button3.setOnClickListener{
+            finishAffinity()
+        }
 
     }
 }
