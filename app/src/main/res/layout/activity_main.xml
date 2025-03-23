@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:text="@string/title"
         android:textColor="@color/black"
-        android:textSize="48sp"
+        android:textSize="@dimen/title"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
