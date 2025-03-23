@@ -35,7 +35,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="376dp"
         app:layout_constraintGuide_percent="0.73" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -43,7 +42,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="376dp"
         app:layout_constraintGuide_percent="0.61" />
 
     <Button
@@ -51,9 +49,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/button"
-        android:text="Kalkulator prosty"
-        android:textColor="@color/background"
-        android:visibility="visible"
+        android:text="@string/menu1"
+        android:textColor="@color/button_text"
+        android:textSize="@dimen/text_button"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -65,9 +63,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/button"
-        android:text="Advanced"
-        android:textColor="@color/background"
+        android:text="@string/menu2"
+        android:textColor="@color/button_text"
         app:cornerRadius="10dp"
+        android:textSize="@dimen/text_button"
         app:layout_constraintBottom_toTopOf="@+id/guideline14"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -78,9 +77,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/button"
-        android:text="About"
-        android:textColor="@color/background"
+        android:text="@string/menu3"
+        android:textColor="@color/button_text"
         app:cornerRadius="10dp"
+        android:textSize="@dimen/text_button"
         app:layout_constraintBottom_toTopOf="@+id/guideline16"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -90,8 +90,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calculator"
-        android:textColor="@color/white"
+        android:text="@string/title"
+        android:textColor="@color/black"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -103,7 +103,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="131dp"
         app:layout_constraintGuide_percent="0.33" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -111,7 +110,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="376dp"
         app:layout_constraintGuide_percent="0.45" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -119,7 +117,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="376dp"
         app:layout_constraintGuide_percent="0.47" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -127,7 +124,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="376dp"
         app:layout_constraintGuide_percent="0.59" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -135,7 +131,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="88dp"
         app:layout_constraintGuide_percent="0.22" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -143,7 +138,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="270dp"
         app:layout_constraintGuide_percent="0.78" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -151,7 +145,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="96dp"
         app:layout_constraintGuide_percent="0.15" />
 
     <Button
@@ -159,9 +152,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/button"
-        android:text="Exit"
-        android:textColor="@color/background"
+        android:text="@string/menu4"
+        android:textColor="@color/button_text"
         app:cornerRadius="10dp"
+        android:textSize="@dimen/text_button"
         app:layout_constraintBottom_toTopOf="@+id/guideline20"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline3"

@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">Calculator</string>
+    <string name="plus">+</string>
+    <string name="equal">=</string>
+    <string name="dot">.</string>
+    <string name="multiply">*</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="divide">/</string>
+    <string name="nine">9</string>
+    <string name="changeSign">±</string>
+    <string name="clear">C</string>
+    <string name="eight">8</string>
+    <string name="seven">7</string>
+    <string name="four">4</string>
+    <string name="one">1</string>
+    <string name="zero">0</string>
+    <string name="backspace">Bksp</string>
+    <string name="minus">-</string>
+    <string name="three">3</string>
+    <string name="two">2</string>
+    <string name="menu1">Simple</string>
+    <string name="menu2">Advanced</string>
+    <string name="menu3">About</string>
+    <string name="title">Calculator</string>
+    <string name="menu4">Exit</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="ln">ln</string>
+    <string name="sqrt">sqrt</string>
+    <string name="x_2">x^2</string>
+    <string name="x_y">x^y</string>
+    <string name="log">log</string>
+    <string name="about_app_name">Application name\n Calculator</string>
+    <string name="version">Version: 1.0.0</string>
+    <string name="developed">Developed by:\n Albert Brożyna</string>
+    <string name="contact">Contact:\n brozynaalbert@gmail.com</string>
+    <string name="desc">Description:\n Calculator is a simple app that allow you to perfom simplem math operations.</string>
 </resources>
