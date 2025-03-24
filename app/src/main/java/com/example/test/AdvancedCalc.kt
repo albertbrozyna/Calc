@@ -135,7 +135,7 @@ class AdvancedCalc : AppCompatActivity() {
                 }
 
                 display.text = newNumber
-                updateScreen()
+                updateScreenToRight()
             }
         }
 
@@ -146,7 +146,7 @@ class AdvancedCalc : AppCompatActivity() {
             val newNumber =
                 if (number.last() != '.' && !isNumberContainDot(number) && !isOperator(number.last())) "$number." else number
             display.text = newNumber
-            updateScreen()
+            updateScreenToRight()
         }
 
         //Listener for backspace
@@ -213,7 +213,7 @@ class AdvancedCalc : AppCompatActivity() {
             }
 
             display.text = newNumber
-            updateScreen()
+            updateScreenToRight()
         }
 
         //Listener for equals
@@ -226,7 +226,7 @@ class AdvancedCalc : AppCompatActivity() {
             }
 
             display.text = newNumber
-            updateScreen()
+            updateScreenToLeft()
         }
 
 
@@ -249,7 +249,7 @@ class AdvancedCalc : AppCompatActivity() {
                 }
 
                 display.text = newNumber
-                updateScreen()
+                updateScreenToRight()
             }
         }
         //Listeners for sin cos
@@ -261,14 +261,15 @@ class AdvancedCalc : AppCompatActivity() {
             if (containOperatorAndTwoDigits(number)) {
                 var newNumber = calculateExpression(number)
                 newNumber = sin(newNumber.toDouble()).toString()
-                newNumber = deleteZeros(newNumber)
+                newNumber = deleteZerosAndTrim(newNumber)
                 display.text = newNumber
             } else if (isNumber(number)) {
                 var newNumber = sin(number.toDouble()).toString()
-                newNumber = deleteZeros(newNumber)
+                newNumber = deleteZerosAndTrim(newNumber)
                 display.text = newNumber
             }
-            updateScreen()
+            updateScreenToLeft()
+
         }
 
         cos.setOnClickListener {
@@ -277,14 +278,15 @@ class AdvancedCalc : AppCompatActivity() {
             if (containOperatorAndTwoDigits(number)) {
                 var newNumber = calculateExpression(number)
                 newNumber = cos(newNumber.toDouble()).toString()
-                newNumber = deleteZeros(newNumber)
+                newNumber = deleteZerosAndTrim(newNumber)
                 display.text = newNumber
             } else if (isNumber(number)) {
                 var newNumber = cos(number.toDouble()).toString()
-                newNumber = deleteZeros(newNumber)
+                newNumber = deleteZerosAndTrim(newNumber)
                 display.text = newNumber
             }
-            updateScreen()
+            updateScreenToLeft()
+
         }
 
         tan.setOnClickListener {
@@ -293,14 +295,15 @@ class AdvancedCalc : AppCompatActivity() {
             if (containOperatorAndTwoDigits(number)) {
                 var newNumber = calculateExpression(number)
                 newNumber = tan(newNumber.toDouble()).toString()
-                newNumber = deleteZeros(newNumber)
+                newNumber = deleteZerosAndTrim(newNumber)
                 display.text = newNumber
             } else if (isNumber(number)) {
                 var newNumber = tan(number.toDouble()).toString()
-                newNumber = deleteZeros(newNumber)
+                newNumber = deleteZerosAndTrim(newNumber)
                 display.text = newNumber
             }
-            updateScreen()
+            updateScreenToLeft()
+
         }
 
         sqrt.setOnClickListener {
@@ -311,15 +314,16 @@ class AdvancedCalc : AppCompatActivity() {
 
                 if (num.toDouble() >= 0) {
                     var newNumber = sqrt(num.toDouble()).toString()
-                    newNumber = deleteZeros(newNumber)
+                    newNumber = deleteZerosAndTrim(newNumber)
                     display.text = newNumber
                 }
             } else if (isNumber(number) && number.first() != '-') {
                 var newNumber = sqrt(number.toDouble()).toString()
-                newNumber = deleteZeros(newNumber)
+                newNumber = deleteZerosAndTrim(newNumber)
                 display.text = newNumber
             }
-            updateScreen()
+            updateScreenToLeft()
+
         }
 
         ln.setOnClickListener {
@@ -330,14 +334,15 @@ class AdvancedCalc : AppCompatActivity() {
 
                 if (num.toDouble() > 0) {
                     var newNumber = ln(num.toDouble()).toString()
-                    newNumber = deleteZeros(newNumber)
+                    newNumber = deleteZerosAndTrim(newNumber)
                     display.text = newNumber
                 }
             } else if (isNumber(number) && number.first() != '-') {
                 var newNumber = sqrt(number.toDouble()).toString()
-                newNumber = deleteZeros(newNumber)
+                newNumber = deleteZerosAndTrim(newNumber)
                 display.text = newNumber
             }
+            updateScreenToLeft()
         }
 
         log.setOnClickListener {
@@ -348,12 +353,12 @@ class AdvancedCalc : AppCompatActivity() {
 
                 if (num.toDouble() > 0) {
                     var newNumber = log(num.toDouble(), 10.0).toString()
-                    newNumber = deleteZeros(newNumber)
+                    newNumber = deleteZerosAndTrim(newNumber)
                     display.text = newNumber
                 }
             } else if (isNumber(number) && number.first() != '-') {
                 var newNumber = sqrt(number.toDouble()).toString()
-                newNumber = deleteZeros(newNumber)
+                newNumber = deleteZerosAndTrim(newNumber)
                 display.text = newNumber
             }
         }
@@ -365,14 +370,14 @@ class AdvancedCalc : AppCompatActivity() {
                 val num = calculateExpression(number)
 
                 var newNumber = (num.toDouble() * num.toDouble()).toString()
-                newNumber = deleteZeros(newNumber)
+                newNumber = deleteZerosAndTrim(newNumber)
                 display.text = newNumber
             } else if (isNumber(number)) {
                 var newNumber = (number.toDouble() * number.toDouble()).toString()
-                newNumber = deleteZeros(newNumber)
+                newNumber = deleteZerosAndTrim(newNumber)
                 display.text = newNumber
             }
-            updateScreen()
+            updateScreenToLeft()
         }
 
         xpowy.setOnClickListener {
@@ -383,20 +388,17 @@ class AdvancedCalc : AppCompatActivity() {
             } else if (number.last() != '.') {
                 display.text = display.text.toString() + '^'
             }
-            updateScreen()
+            updateScreenToRight()
         }
     }
 
-    fun isNumber(s: String): Boolean {
+    private fun isNumber(s: String): Boolean {
         val num = s.toDoubleOrNull()
 
-        if (num == null || s.last() == '.' || isOperator(s.last())) {
-            return false
-        }
-        return true
+        return !(num == null || s.last() == '.' || isOperator(s.last()))
     }
 
-    fun findOperatorIndex(s: String): Int {
+    private fun findOperatorIndex(s: String): Int {
         //Founding operator index
         var operatorIndex = 0
         var add = 0
@@ -423,7 +425,7 @@ class AdvancedCalc : AppCompatActivity() {
     }
 
 
-    fun isNumberContainDot(s: String): Boolean {
+    private fun isNumberContainDot(s: String): Boolean {
 
         val operatorIndex = findOperatorIndex(s)
 
@@ -439,11 +441,11 @@ class AdvancedCalc : AppCompatActivity() {
     }
 
 
-    fun isOperator(c: Char): Boolean {
+    private fun isOperator(c: Char): Boolean {
         return c == '+' || c == '-' || c == '/' || c == '*' || c == '^'
     }
 
-    fun containOperatorAndTwoDigits(s: String): Boolean {
+    private fun containOperatorAndTwoDigits(s: String): Boolean {
         //Finding operator index
         val operatorIndex = findOperatorIndex(s)
 
@@ -457,14 +459,11 @@ class AdvancedCalc : AppCompatActivity() {
         s.substring(operatorIndex + 1).toDoubleOrNull() ?: return false
 
         //Checking if operator is not last element
-        if (isOperator(s.last()) || s.last() == '.') {
-            return false
-        }
-        return true
+        return !(isOperator(s.last()) || s.last() == '.')
     }
 
 
-    fun calculateExpression(e: String): String {
+    private fun calculateExpression(e: String): String {
         val operatorIndex = findOperatorIndex(e)
 
         //Splitting numbers by this index
@@ -488,12 +487,12 @@ class AdvancedCalc : AppCompatActivity() {
         }
 
         //Deleting zeros from the end and dot if they are
-        val sumStr = deleteZeros(firstNumberDb.toString())
+        val sumStr = deleteZerosAndTrim(firstNumberDb.toString())
 
         return sumStr
     }
 
-    fun deleteZeros(s: String): String {
+    private fun deleteZerosAndTrim(s: String): String {
         var str = s
         if (str.length > 1 || str.first() != '0') {
             while (str.last() == '0') {
@@ -509,13 +508,30 @@ class AdvancedCalc : AppCompatActivity() {
         if (str == "-0") {
             str = "0"
         }
+
+        //Cutting to 5 decimal places
+
+        val dotIndex = str.indexOf('.')
+        if (dotIndex != -1 && !str.contains('E')) {
+            if (str.length > dotIndex + 5) {
+                str = str.substring(0, dotIndex + 5)
+            }
+        }
+
         return str
     }
 
 
-    fun updateScreen() {
+    private fun updateScreenToRight() {
         hsv.post {
             hsv.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
         }
     }
+
+    private fun updateScreenToLeft() {
+        hsv.post {
+            hsv.fullScroll(HorizontalScrollView.FOCUS_LEFT)
+        }
+    }
+
 }

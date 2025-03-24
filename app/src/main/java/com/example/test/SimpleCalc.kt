@@ -97,7 +97,7 @@ class SimpleCalc : AppCompatActivity() {
                 }
 
                 display.text = newNumber
-                updateScreen()
+                updateScreenToRight()
             }
         }
 
@@ -108,7 +108,7 @@ class SimpleCalc : AppCompatActivity() {
             val newNumber =
                 if (number.last() != '.' && !isNumberContainDot(number) && !isOperator(number.last())) "$number." else number
             display.text = newNumber
-            updateScreen()
+            updateScreenToRight()
         }
 
         //Listener for backspace
@@ -175,7 +175,7 @@ class SimpleCalc : AppCompatActivity() {
             }
 
             display.text = newNumber
-            updateScreen()
+            updateScreenToRight()
         }
 
         //Listener for equals
@@ -188,7 +188,7 @@ class SimpleCalc : AppCompatActivity() {
             }
 
             display.text = newNumber
-            updateScreen()
+            updateScreenToLeft()
         }
 
 
@@ -211,14 +211,12 @@ class SimpleCalc : AppCompatActivity() {
                 }
 
                 display.text = newNumber
-                updateScreen()
+                updateScreenToRight()
             }
         }
-
-
     }
 
-    fun findOperatorIndex(s: String): Int {
+    private fun findOperatorIndex(s: String): Int {
         //Founding operator index
         var operatorIndex = 0
         var add = 0
@@ -245,7 +243,7 @@ class SimpleCalc : AppCompatActivity() {
     }
 
 
-    fun isNumberContainDot(s: String): Boolean {
+    private fun isNumberContainDot(s: String): Boolean {
 
         val operatorIndex = findOperatorIndex(s)
 
@@ -261,11 +259,11 @@ class SimpleCalc : AppCompatActivity() {
     }
 
 
-    fun isOperator(c: Char): Boolean {
+    private fun isOperator(c: Char): Boolean {
         return c == '+' || c == '-' || c == '/' || c == '*'
     }
 
-    fun containOperatorAndTwoDigits(s: String): Boolean {
+    private fun containOperatorAndTwoDigits(s: String): Boolean {
         //Finding operator index
         val operatorIndex = findOperatorIndex(s)
 
@@ -283,7 +281,7 @@ class SimpleCalc : AppCompatActivity() {
     }
 
 
-    fun calculateExpression(e: String): String {
+    private fun calculateExpression(e: String): String {
         val operatorIndex = findOperatorIndex(e)
 
         //Splitting numbers by this index
@@ -314,20 +312,52 @@ class SimpleCalc : AppCompatActivity() {
         }
 
         //Delete the dot
-        if (sumStr.last() == '.') {
-            sumStr = sumStr.substring(0, sumStr.length - 1)
-        }
-
-        if (sumStr == "-0") {
-            sumStr = "0"
-        }
+        sumStr = deleteZerosAndTrim(sumStr)
 
         return sumStr
     }
 
-    fun updateScreen() {
+
+
+    private fun deleteZerosAndTrim(s: String): String {
+        var str = s
+        if (str.length > 1 || str.first() != '0') {
+            while (str.last() == '0') {
+                str = str.substring(0, str.length - 1)
+            }
+        }
+
+        //Delete the dot
+        if (str.last() == '.') {
+            str = str.substring(0, str.length - 1)
+        }
+
+        if (str == "-0") {
+            str = "0"
+        }
+
+        //Cutting to 5 decimal places
+
+        val dotIndex = str.indexOf('.')
+        if (dotIndex != -1 && !str.contains('E')) {
+            if (str.length > dotIndex + 5) {
+                str = str.substring(0, dotIndex + 5)
+            }
+        }
+
+        return str
+    }
+
+    private fun updateScreenToRight() {
         hsv.post {
             hsv.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
         }
     }
+
+    private fun updateScreenToLeft() {
+        hsv.post {
+            hsv.fullScroll(HorizontalScrollView.FOCUS_LEFT)
+        }
+    }
+
 }
