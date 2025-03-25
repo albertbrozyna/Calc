@@ -12,14 +12,16 @@
         android:id="@+id/hss1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_gravity="center_vertical"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/id_clear"
+
+        app:layout_constraintBottom_toTopOf="@id/id_clear"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:gravity="center_vertical|right"
             android:id="@+id/display"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -28,9 +30,8 @@
             android:autoSizeTextType="uniform"
             android:maxLines="1"
             android:text="@string/zero"
-            android:textAlignment="textEnd"
             android:textColor="@color/button_text"
-            app:layout_constraintBottom_toTopOf="@+id/guideline8"
+            app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
