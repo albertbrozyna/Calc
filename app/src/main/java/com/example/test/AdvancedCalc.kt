@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.HorizontalScrollView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -309,6 +310,11 @@ class AdvancedCalc : AppCompatActivity() {
         sqrt.setOnClickListener {
             val number = display.text.toString()
 
+            if(isNumber(number) && number.first() == '-'){
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             if (containOperatorAndTwoDigits(number)) {
                 val num = calculateExpression(number)
 
@@ -329,6 +335,12 @@ class AdvancedCalc : AppCompatActivity() {
         ln.setOnClickListener {
             val number = display.text.toString()
 
+            if(isNumber(number) && number.first() == '-'){
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
             if (containOperatorAndTwoDigits(number)) {
                 val num = calculateExpression(number)
 
@@ -347,6 +359,11 @@ class AdvancedCalc : AppCompatActivity() {
 
         log.setOnClickListener {
             val number = display.text.toString()
+
+            if(isNumber(number) && number.first() == '-'){
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             if (containOperatorAndTwoDigits(number)) {
                 val num = calculateExpression(number)
@@ -472,10 +489,27 @@ class AdvancedCalc : AppCompatActivity() {
         val operator = e[operatorIndex]
         val secondNumber = e.substring(operatorIndex + 1)
 
-        var firstNumberDb = firstNumber.toDoubleOrNull() ?: return "Error"
-        val secondNumberDb = secondNumber.toDoubleOrNull() ?: return "Error"
+        var firstNumberDb = firstNumber.toDoubleOrNull()
+
+        if(firstNumberDb == null){
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+            return "0"
+        }
+
+        val secondNumberDb = secondNumber.toDoubleOrNull()
+
+        if(secondNumberDb == null){
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+            return "0"
+        }
+
         //Zero dividing
-        if (operator == '/' && secondNumberDb == 0.0) return "Error"
+        if (operator == '/' && secondNumberDb == 0.0){
+            Toast.makeText(this, "Error - divsion by zero", Toast.LENGTH_SHORT).show()
+            return "0"
+        }
+
+
 
         //Calculating
         when (operator) {
